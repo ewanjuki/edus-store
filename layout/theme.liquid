@@ -12,7 +12,33 @@
   </head>
   <body>
     <div class="container">
-      {{ content_for_layout }}
+      <header class="header">
+        <a href="/" class="header__logo">Edus store</a>
+      
+        <ul class="header-first__nav">
+          {%- for link in linklists.main-menu.links -%}
+          <li class="header-nav__item">
+            <a href="{{ link.url }}" class="header-nav__link">{{ link.title | escape }}</a>
+          </li>
+          {%- endfor -%}
+        </ul>
+      
+        <ul class="header-second__nav">
+          <li class="header-nav__item">
+            <a class="header-nav__link" href="/collections/all">
+              <i class="fas fa-truck"></i>Order Now
+            </a>
+          </li>
+          <li class="header-nav__item">
+            <a class="header-nav__link" href="/cart">
+              <i class="fas fa-shopping-cart"></i>Cart(<span>{{ cart.item_count }}</span>)
+            </a>
+          </li>
+        </ul>
+      </header>
+      <div class="main">
+        {{ content_for_layout }}
+      </div>
     </div>
     {{- 'theme.js' | asset_url | script_tag -}}
   </body>
