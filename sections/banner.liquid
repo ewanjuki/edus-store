@@ -1,0 +1,77 @@
+<style>
+  .banner {
+    background: linear-gradient(to top, rgba(0,0,0,.5), rgba(0,0,0,.4)), url({{ section.settings.image | img_url: 'master', format: 'pjpg' }});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .banner__content {
+    text-align: center;
+  }
+
+  .banner__title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5rem;
+    color: #fff;
+  }
+
+  .banner__link {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 1rem 1rem;
+    font-size: 3rem;
+    font-family: 'Dancing Script', cursive;
+    text-decoration: none;
+    margin-top: 1rem;
+    border-radius: 2rem;
+  }
+  
+</style>
+
+<div class="banner">
+  <div class="banner__content">
+    <h1 class="banner__title">{{ section.settings.title | escape }}</h1>
+    <a href="{{ section.settings.href }}" class="banner__link">{{ section.settings.label | escape}}</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Banner image",
+  "settings": [
+    {
+      "id": "image",
+      "type": "image_picker",
+      "label": "Banner image"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Title"
+    },
+    {
+      "id": "label",
+      "type": "text",
+      "label": "Button text"
+    },
+    {
+      "id": "href",
+      "type": "url",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner image",
+      "category": "Images"
+    }
+  ]
+}
+{% endschema %}
