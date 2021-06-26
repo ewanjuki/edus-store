@@ -19,3 +19,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.container {
+  display: grid;
+  grid-template-columns: minmax(6rem, 1fr) repeat(8, minmax(min-content, 16rem)) minmax(
+      6rem,
+      1fr
+    );
+  grid-template-rows: repeat(3, min-content);
+  margin-top: 1.6rem;
+}

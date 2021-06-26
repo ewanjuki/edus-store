@@ -5,7 +5,9 @@
     {{- 'styles.css' | asset_url | stylesheet_tag -}}
   </head>
   <body>
-    {{ content_for_layout }}
+    <div class="container">
+      {{ content_for_layout }}
+    </div>
     {{- 'theme.js' | asset_url | script_tag -}}
   </body>
 </html>
