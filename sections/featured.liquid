@@ -1,0 +1,33 @@
+{% schema %}
+{
+  "name": "Featured products",
+  "settings": [
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Section title",
+      "info": "Defaults to collection title."
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured products",
+      "category": "Features"
+    }
+  ]
+}
+{% endschema %}
+{% assign collection = collections[section.settings.collection] %}
+<div class="featured__products">
+  <h2 class="featured-products__title">{{ section.settings.title }}</h2>
+  <div class="featured-products__wrapper">
+    {% for product in collection.products %}
+      {% include 'product' with product %}
+    {% endfor %}
+  </div>
+</div>

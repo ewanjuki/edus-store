@@ -4,6 +4,8 @@
 :root {
   --primary-color: #12376e;
   --secondary-color: #34598f;
+  --tertiary-color: #23487f;
+  --quartery-color: #45889f;
 }
 
 html {
@@ -105,4 +107,36 @@ body {
 .main {
   grid-row: 2 / 3;
   grid-column: 2 / 10;
+}
+
+.featured__products {
+  text-align: center;
+  margin-top: 1.6rem;
+}
+
+.featured-products__title {
+  font-size: 3rem;
+  color: var(--tertiary-color);
+  margin: 2rem 0;
+}
+
+.featured-products__wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-gap: 3.2rem;
+}
+
+.product__details {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.product__title {
+  color: var(--quartery-color);
+  font-size: 1.5rem;
+}
+
+.product__price {
+  color: var(--tertiary-color);
+  font-size: 2rem;
 }

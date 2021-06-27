@@ -1,0 +1,5 @@
+<a href="{{ product.url }}" class="product__details">
+  <img class="product__image" src="{{ product.featured_image | img_url: '200x' }}" alt="{{ product.title | escape }}">
+  <h6 class="product__title">{{ product.title | escape }}</h6>
+  <p class="product__price">{{ product.price | money }}</p>
+</a>
