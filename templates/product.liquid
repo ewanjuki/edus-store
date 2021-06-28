@@ -1,3 +1,49 @@
-<div id="product-page">
-  
+<div class="product__page">
+  <div class="product__intro">
+    <h1 class="product__title">{{ product.title | escape}}</h1>
+    <h5 class="text-muted">{{ product.vendor | escape }}</h5>
+    <h3>{% if product.price_varies %}
+      {{ product.price_min | money }} - {{ product.price_max | money }}
+      {% else %}
+        {{ product.price | money }}
+    {% endif %}</h3>
+  </div>
+
+  <div class="product__images">
+    {% for image in product.images %}
+      <img src="{{ image | img_url: '200x' }}" />
+    {% endfor %}
+  </div>
+
+  <div class="product__description">
+    <h3 class="product-description__title">Description</h3>
+    <p class="product-description__para">{{ product.description }}</p>
+  </div>
+
+  <form class="product-add-to-cart__form" action="/cart/add" method="post">
+    {% if product.variants.size > 1 %}
+      <div class="form-group">
+        <label for="product-select">Select your {{ product.title | downcase }}</label>
+        <select name="id" id="product-select" class="form-control">
+          {%- for variant in product.variants -%}
+            <option {% if variant == product.selected_or_first_available_variant %}
+              selected="selected"
+            {% endif %} value="{{ variant.id }}">
+              {{ variant.title | escape }} - {{ variant.price | money }}
+            </option>
+          {%- endfor -%}
+        </select>
+      </div>
+    {% else %}
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}"> 
+    {% endif %}
+
+    <button type="submit" {% unless product.available %}
+      disabled="disabled"
+    {% endunless %}>Add to cart</button>
+  </form>
+
+  <div class="related__products">
+    <h3>You may also like</h3>
+    {% include 'related-products' %}
 </div>
