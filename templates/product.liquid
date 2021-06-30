@@ -1,23 +1,30 @@
 <div class="product__page">
   <div class="product__intro">
-    <h1 class="product__title">{{ product.title | escape}}</h1>
-    <h5 class="text-muted">{{ product.vendor | escape }}</h5>
-    <h3>{% if product.price_varies %}
+    <h1 class="product-intro__title">{{ product.title | escape}}</h1>
+    <h5 class="product-intro__vendor">{{ product.vendor | escape }}</h5>
+    <h3 class="product-intro__price">{% if product.price_varies %}
       {{ product.price_min | money }} - {{ product.price_max | money }}
       {% else %}
         {{ product.price | money }}
     {% endif %}</h3>
   </div>
 
-  <div class="product__images">
-    {% for image in product.images %}
-      <img src="{{ image | img_url: '200x' }}" />
-    {% endfor %}
+  <div class="product-images__wrapper">
+    <img class="product-first__image" src="{{ product.featured_image | img_url: '500x' }}" />
+    {% if product.images.size > 1 %}
+      <div class="product-other__images">
+        {% for image in product.images %}
+          {% if forloop.index > 1 %}
+            <img src="{{ image | img_url }}" />
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
   </div>
 
   <div class="product__description">
     <h3 class="product-description__title">Description</h3>
-    <p class="product-description__para">{{ product.description }}</p>
+    {{ product.description }}
   </div>
 
   <form class="product-add-to-cart__form" action="/cart/add" method="post">
@@ -45,5 +52,7 @@
 
   <div class="related__products">
     <h3>You may also like</h3>
-    {% include 'related-products' %}
+    <div class="related-products__wrapper">
+      {% include 'related-products' %}
+    </div>
 </div>
