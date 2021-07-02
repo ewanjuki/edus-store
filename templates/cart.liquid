@@ -1,4 +1,31 @@
 <div class="cart__page">
   <h1>Your Cart</h1>
-  
+
+  {% if cart.items.size > 0 %}
+    <form class="cart__form" action="/cart" method="post">
+      <div class="cart-form__headings">
+        <h6 class="name__heading">Item</h6>
+        <h6 class="quantity__heading">Quantity</h6>
+        <h6 class="price__heading">Price</h6>
+      </div>
+
+      <div class="cart-items__wrapper">
+        {% for item in cart.items %}
+          {% include 'cart-item' %}
+        {% endfor %}
+      </div>
+
+      <div class="cart-form__footer">
+        <p class="total__price">{{ cart.total_price | money }}</p>
+        <div class="cart__buttons">
+          <input type="submit" name="update" value="Update">
+          <input type="submit" name="checkout" value="Checkout">
+        </div>
+      </div>
+    </form>
+  {% else %}
+    <p>
+      Your cart is empty
+    </p>
+  {% endif %}
 </div>

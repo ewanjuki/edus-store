@@ -1,0 +1,10 @@
+<div class="cart__item">
+  <img class="cart-item__img" src="{{ item | img_url: '150x'}}" alt="{{ item.title | escape }}" />
+  <a class="cart-item__remove" href="/cart/change?line={{ forloop.index }}&quantity=0">
+    <i class="fas fa-trash-alt"></i>
+  </a>
+  <input class="cart-item__qty" name="updates[]" type="number" 
+    value="{{ item.quantity }}" data-submit-on-change=".cart__page" />
+
+  <p class="cart-item__price">{{ item.line_price | money }}</p>
+</div>
