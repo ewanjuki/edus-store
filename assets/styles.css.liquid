@@ -397,3 +397,24 @@ body {
   text-decoration: none;
   color: var(--primary-color);
 }
+
+.product-details__list {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 1rem;
+}
+
+.product-details__list img {
+  grid-row: 1 / -1;
+  grid-column: 1 / 2;
+}
+
+.product-details__list h5, .product-details__list h6 {
+  grid-row: 1 / -1;
+  grid-column: 2 / 4;
+}
+
+.product-details__list p {
+  grid-row: 1 / -1;
+  grid-column: 10 / -1;
+}
