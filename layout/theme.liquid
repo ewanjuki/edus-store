@@ -39,6 +39,16 @@
       <div class="main">
         {{ content_for_layout }}
       </div>
+
+      <footer class="footer">
+        <ul class="footer__nav">
+          {%- for link in linklists.main-menu.links -%}
+            <li class="footer__item">
+              <a href="{{ link.url }}" class="footer__link">{{ link.title | escape }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </footer>
     </div>
     {{- 'theme.js' | asset_url | script_tag -}}
   </body>
