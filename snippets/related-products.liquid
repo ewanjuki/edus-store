@@ -71,7 +71,11 @@
     {%- endfor -%}
 
     {%- for related_product in related_collection.products limit: RELATED_PRODUCTS_LIMIT -%}
-      {%- include 'product' with related_product -%}
+      {% if product.handle == related_product.handle %}
+        {% continue %}
+        {% else %}
+        {%- include 'product' with related_product -%}
+      {% endif %}
     {%- endfor -%}
 
   {%- endif -%}
