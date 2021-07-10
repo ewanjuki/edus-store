@@ -1,5 +1,5 @@
 <a href="{{ product.url }}" class="product-details__list">
-  <img class="product__image" src="{{ product.featured_image | img_url: '200x' }}" alt="{{ product.title | escape }}">
+  <img class="product__image" src="{{ product.featured_image | img_url: '180x' }}" alt="{{ product.title | escape }}">
   <h5 class="product__title">{{ product.title | escape }}</h5>
   <h6 class="product__vendor">{{ product.vendor| escape }}</h6>
   <p class="product__price">{{ product.price | money }}</p>
