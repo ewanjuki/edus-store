@@ -70,11 +70,19 @@
       {%- endunless -%}
     {%- endfor -%}
 
-    {%- for related_product in related_collection.products limit: RELATED_PRODUCTS_LIMIT -%}
+    {% assign related_product_count = 0 %}
+    {%- for related_product in related_collection.products -%}
       {% if product.handle == related_product.handle %}
         {% continue %}
         {% else %}
-        {%- include 'product' with related_product -%}
+        {% if related_product_count < RELATED_PRODUCTS_LIMIT %}
+          {% if product.type == related_product.type %}
+            {%- include 'product' with related_product -%}
+            {% assign related_product_count = related_product_count | plus: 1 %}
+          {% endif %}
+        {% else %}
+          {% break %}
+        {% endif %}  
       {% endif %}
     {%- endfor -%}
 
